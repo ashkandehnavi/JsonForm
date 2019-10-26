@@ -1,0 +1,48 @@
+<form id="frm">
+
+  name:
+  <input type="text" data-bind="person.name" /><br />
+  email:
+  <input type="email" data-bind="person.user.email" /><br />
+  password:
+  <input type="password" data-bind="person.user.password" /><br />
+  father:
+  <select name="name" data-bind="person.fatherName">
+      <option value="ali">ali</option>
+      <option value="mamad">mamad</option>
+      <option value="naser">naser</option>
+  </select><br />
+  wallet:
+  <input type="checkbox" data-bind="wallet.isTrue" /><br />
+  data:
+  <input type="hidden" data-bind="date" />
+  gender:
+  <input type="radio" name="gender" data-bind="user.gender" value="male" />1
+  <input type="radio" name="gender" data-bind="user.gender" value="feMale" />0<br />
+
+  city:
+  <select data-bind="city">
+      <option value="tehran">تهران</option>
+      <option value="karaj">کرج</option>
+  </select><br />
+
+  multi:
+  <select multiple data-bind="user.multiple">
+      <option value="opt1">1</option>
+      <option value="opt2">2</option>
+  </select>
+
+</form>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="JsonFormConvertor.js"></script>
+
+<script>
+var obj = JSON.parse('{"person":{"name":"ashkan","user":{"email":"email@site.com","password":"123"},"fatherName":"ali"},"wallet":{"isTrue":true},"date":"","user":{"gender":"male","multiple":["opt1","opt2"]},"city":"tehran"}');
+
+var form = new JsonFormConvertor();
+
+form.setData('#frm', obj);
+
+console.log(form.getData('#frm'));
+
+</script>
