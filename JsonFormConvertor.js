@@ -94,13 +94,32 @@
             elem.val(val);
         });
     }
+    var clearForm=function(container){
+        var elems = $(container + ' input');
+        $.each(elems, function (i, o) {
+            var elem = $(o);
+            var type = elem.attr('type');
 
+            if (type == 'text' || type == 'email' || type == 'password' || type == 'tel' || type == 'number' || type == 'search' || type == 'url' || type == 'hidden')
+                elem.val('');
+            else if (type == 'checkbox' || type == 'radio')
+                elem.prop('checked', false);
+        });
+
+        var selects = $('#frm select');
+        $.each(selects, function (i, o) {
+            $(o).val([]);
+        });
+    }
     return {
         getData: function (container) {
             return getData(container);
         },
         setData: function (container, obj) {
             setData(container, obj);
+        },
+        clean:function(container){
+            clearForm(container);
         }
     }
 }
